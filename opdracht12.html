@@ -1,0 +1,39 @@
+<html>
+    <body>
+        <canvas id="canvas" width="800" height="600"></canvas>
+        <script src="./robot-arm.js"></script>
+	<script>
+ 			var canvas = document.getElementById("canvas");
+ 			var robotArm = new RobotArm(canvas);
+
+  			robotArm.loadLevel("exercise 12");
+
+  			// Je eigen code plaats je hier.
+	  		robotArm.speed = 500	
+	  		var tellen= 10
+
+	  		for(var koekepan =1;koekepan<=9;koekepan++){
+	  			robotArm.grab();
+	  			robotArm.scan();
+	  			var tellen= tellen-1
+	  			if (robotArm.scan()=="red"){
+	  				robotArm.grab();
+	  				for (var right=1; right <= tellen; right++){
+	  					robotArm.moveRight();
+	  				}
+	  				robotArm.drop();
+	  					for(var left=1; left<= tellen-1; left++){
+	  						robotArm.moveLeft();
+	  				}
+	  			}
+	  			else{
+	  				robotArm.drop();
+	  				robotArm.moveRight();
+	  			}
+	  		}
+	  		
+			
+	  		robotArm.run();
+	</script>
+    </body>
+</html>
